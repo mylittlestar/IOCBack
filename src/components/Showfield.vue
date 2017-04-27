@@ -30,27 +30,28 @@
     mounted: function () {
       var that = this;
       var myChart = echarts.init(document.getElementById('main'));
-      axios.get('/static/hangzhou.json')
+      axios.get('/static/china.json')
         .then( function(res) {
           //console.log(res);
-          //console.log(res.data);
-          that.mapDetail = res.data;
+
+          that.mapDetail = res.data.features;
+          var province = (that.mapDetail)[0].geometry.coordinates;
           //console.log(that.mapDetail);
-          //console.log(res);
-          var lines = that.mapDetail.map(function (track) {
+          /*var lines = that.mapDetail.map(function (track) {
             //console.log(track);
             return {
               coords: track.map(function (seg, idx) {
+                /!*最后返回坐标点*!/
                 return seg.coord;
               })
             };
-          });
-          console.log(lines);
+          });*/
+          //console.log(lines[0]);
 
           var option;
           myChart.setOption(option = {
             bmap: {
-              center: [120.1382899739,30.234062922977],
+              center: [87.615177,43.823823],
               zoom: 14,
               roam: true,
               mapStyle: {
@@ -156,7 +157,7 @@
             series: [{
               type: 'lines',
               coordinateSystem: 'bmap',
-              data: lines,
+              data: province,
               polyline: true,
               lineStyle: {
                 normal: {

@@ -4,7 +4,6 @@
       <li v-for="address in addresses">
         {{address.properties.name}}
       </li>
-      <li></li>
       <!--<li>我的仪表盘</li>
       <li>我的消息</li>
       <li>
