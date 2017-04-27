@@ -35,6 +35,7 @@
       }
     },
     mounted:function () {
+      //所有的生命周期钩子自动绑定 this 上下文到实例中
       //this.getData();
       //var that = this;
       axios.get('/static/china.json')
@@ -43,7 +44,6 @@
           //console.log(this);
           this.addresses = res.data.features;
           //console.log(addresses);
-
         })
         .catch(function (error) {
           console.log(error);
@@ -51,29 +51,33 @@
       //console.log(this);
       //console.log(addresses);
     },
-
   }
 </script>
+
 
 <style>
   .controlList {
     width: 25%;
-    background-color: red;
     height: 600px;
     display: inline-block;
     float: left;
+    overflow-y: scroll;
   }
-
   .controlList ul {
     width: 100%;
     margin: 0;
     -webkit-padding-start: 0;
   }
-
   .controlList ul li {
     list-style: none;
     text-align: left;
     line-height: 50px;
+    background-color: aquamarine;
+    margin: 5px 0;
+    padding-left: 10px;
+  }
+  .controlList ul li:nth-of-type(1){
+    margin-top: 0;
   }
 </style>
 
