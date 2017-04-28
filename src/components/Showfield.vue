@@ -20,7 +20,7 @@
 
 <script>
   import axios from 'axios';
-  import { mapState, mapGetters } from 'vuex'
+  import {mapState, mapGetters} from 'vuex'
 
   export default{
     name: 'showfield',
@@ -32,9 +32,10 @@
     },
     computed: {
       ...mapState({
-        mapDetail: state => state.province,
-        mapCenter: state => state.cp
-      }),
+          mapDetail: state => state.province,
+          mapCenter: state => state.cp
+        }
+      ),
 
       changeMap: function () {
         var option;
@@ -162,11 +163,13 @@
         });
       }
     },
-    mounted: function () {
+    method: function () {
       this.$store.dispatch({
-        type:'getName'
+        type: 'getName'
       });
-      this.changeMap();
+    },
+    mounted: function () {
+      this.changeMap;
     }
   }
 </script>
