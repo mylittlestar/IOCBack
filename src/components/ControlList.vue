@@ -1,31 +1,16 @@
 <template>
   <div class="controlList">
     <ul id="leftList">
-      <li v-for="address in addresses">
+      <li v-for="address in addresses" v-on:click="getName">
         {{address.properties.name}}
       </li>
-      <!--<li>我的仪表盘</li>
-      <li>我的消息</li>
-      <li>
-        <div>指标库管理</div>
-        <ul>
-          <li>指标查询</li>
-          <li>指标应用</li>
-          <li>年度指标管理</li>
-          <li>自定义指标管理</li>
-          <li>指标库管理</li>
-          <li>事件空间管理</li>
-        </ul>
-      </li>
-      <li>我的待办事项</li>
-      <li>我的大屏</li>
-      <li>个人信息</li>-->
     </ul>
   </div>
 </template>
 
 <script>
   import axios from 'axios';
+  import { mapGetters, mapActions, mapState } from 'vuex'
   export default{
     name: 'controlList',
     data(){
@@ -33,26 +18,27 @@
         addresses:''
       }
     },
+
+    methods: mapActions([
+      'getName'
+      ]),
+
+    /*左侧省份名*/
     mounted:function () {
       //所有的生命周期钩子自动绑定 this 上下文到实例中
       //this.getData();
+      //this.getName;
       //var that = this;
       axios.get('/static/china.json')
         .then( (res) => {
-          //console.log(res.data.features);
-          //console.log(this);
           this.addresses = res.data.features;
-          //console.log(addresses);
         })
         .catch(function (error) {
           console.log(error);
         });
-      //console.log(this);
-      //console.log(addresses);
     },
   }
 </script>
-
 
 <style>
   .controlList {
